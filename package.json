@@ -1,0 +1,22 @@
+{
+  "name": "flappy_bird_js",
+  "version": "1.0.0",
+  "description": "clone of flappy bird in js ",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "builb": "",
+    "build:browser": "",
+    "build:android": "",
+    "serve": "lite-server -c=bs-config.json",
+    "start": "npm run serve",
+    "lint": "eslint src/*.js"
+  },
+  "devDependencies": {
+    "concurrently": "^3.2.0",
+    "eslint": "^3.19.0",
+    "lite-server": "^2.2.2"
+  },
+  "author": "abdou",
+  "license": "MIT"
+}

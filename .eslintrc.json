@@ -1,0 +1,26 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-use-before-define": ["error", { "variables": false }],
+        "init-declarations": ["error", "never"],
+        "no-label-var": "error",
+        "no-shadow": "error",
+        "no-unused-vars": "error"
+    }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+        #view-port, #img img, svg{
+            border: 1px solid #000000;
+        }
+        div#main{
+            text-align: center;
+        }
+        div#sub-main p{
+            display: inline;
+        }
+        svg {
+            /*for firefox*/
+            /*-moz-transform:scale3D(2.5,2.5,2.5);-moz-position:absolute;-moz-transform-origin: 0 0;*/
+            image-rendering: optimizeSpeed;             /* Older versions of FF          */
+            image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+            image-rendering: -webkit-optimize-contrast; /* Safari                        */
+            image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+            image-rendering: pixelated;                 /* Awesome future-browsers       */
+            -ms-interpolation-mode: nearest-neighbor;
+            /* IE                            */
+        }
+    </style>
+</head>
+<body>
+<div id="view-port"></div>
+
+
+
+<!--
+<script src="src/collisionDetector.js"></script>
+<script src="src/ViewPort.js"></script>
+-->
+<script src="src/global.vars.js"></script>
+<script src="src/main.js"></script>
+<script src="src/game.js"></script>
+<script src="src/player.js"></script>
+<script src="src/levels.js"></script>
+<script src="src/debugger.js"></script>
+
+<script>
+    if (document.readyState === "complete"
+            ||
+       (document.readyState !== "loading" && !document.documentElement.doScroll))
+        main();
+    else
+    {
+        document.addEventListener("DOMContentLoaded", function ()
+        {
+            main();
+        });
+    }
+</script>
+</body>
+</html>
