@@ -1,7 +1,5 @@
 /*global Game*/
 /*exported main*/
-
-
 'use strict';
 
 function main ()

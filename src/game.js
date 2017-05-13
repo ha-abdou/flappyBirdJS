@@ -4,15 +4,12 @@
 function Game (width, height)
 {
     this.t = 16;//16 is for 60fps
-    this.interval = 0;
+    this.intervalId = 0;
     this.viewPort = document.createElementNS(XMLNS, 'svg');
     this.player = new Player();
     this.level = new Level(width, height);
+    this.UI = new UI(width);
     //this.collisionDetector = new CollisionDetector();
-
-    //for dev
-    window.ddd = new Debugger();
-    //end
 
     this.viewPort.innerHTML = this.loadSprites();
     this.viewPort.setAttribute('viewBox', "0 0 " + width + " " + height);
@@ -20,10 +17,12 @@ function Game (width, height)
     this.viewPort.setAttribute('xmlns:xlink', XLINK);
     this.viewPort.setAttribute('width', width);
     this.viewPort.setAttribute('height', height);
+    this.player.move(width / 3, height / 2);
+
     //for dev
+    window.ddd = new Debugger();
     this.viewPort.setAttribute('style', "zoom:2.5;");
     //end
-    this.player.move(width / 3, height / 2);
 }
 
 Game.prototype.init = function ()
@@ -51,7 +50,7 @@ Game.prototype.start = function ()
         this.player.start();
         this.level.start();
         jumpSound.play();
-        this.interval = setInterval(this.update.bind(this), this.t);
+        this.intervalId = setInterval(this.update.bind(this), this.t);
         this.viewPort.onmousedown = ()=>{
             jumpSound = new Audio('assets/sound/fly.mp3');
 
@@ -81,6 +80,11 @@ Game.prototype.loadSprites = function ()
 };
 
 Game.prototype.reset = function ()
+{
+
+};
+
+Game.prototype.loadFirstScreen = function ()
 {
 
 };
