@@ -1,3 +1,6 @@
+/*global XMLNS*/
+'use strict';
+
 function Level (width, height)
 {
     this.elm = document.createElementNS(XMLNS, 'g');
@@ -36,9 +39,9 @@ Level.prototype.start = function ()
 
 Level.prototype.update = function ()
 {
-    let dt;
+    //let dt;
 
-    dt = this.lastUpdate - (new Date()).getTime();
+    //dt = this.lastUpdate - (new Date()).getTime();
 };
 
 

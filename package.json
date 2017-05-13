@@ -4,10 +4,10 @@
   "description": "clone of flappy bird in js ",
   "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "builb": "",
-    "build:browser": "",
-    "build:android": "",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "builb": "echo \"Error: no builb specified\" && exit 1",
+    "build:browser": "echo \"Error: no builb specified\" && exit 1",
+    "build:android": "echo \"Error: no builb specified\" && exit 1",
     "serve": "lite-server -c=bs-config.json",
     "start": "npm run serve",
     "lint": "eslint src/*.js"

@@ -1,4 +1,5 @@
 /*global XMLNS*/
+'use strict';
 
 function Player ()
 {

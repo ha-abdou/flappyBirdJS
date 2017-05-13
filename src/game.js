@@ -1,3 +1,6 @@
+/*global XMLNS, XLINK, DEBUG, Player, Level, Debugger, ddd*/
+'use strict';
+
 function Game (width, height)
 {
     this.t = 16;//16 is for 60fps
@@ -42,8 +45,9 @@ Game.prototype.start = function ()
     this.player.start();
     this.level.start();
     this.viewPort.onmousedown = ()=>{
-        let jumpSound = new Audio('assets/sound/fly.mp3');
+        let jumpSound;
 
+        jumpSound = new Audio('assets/sound/fly.mp3');
         this.player.start();
         this.level.start();
         jumpSound.play();

@@ -1,42 +1,8 @@
+/*global Game*/
+/*exported main*/
+
+
 'use strict';
-/*
-function play(){
-    if(viewPort !== undefined){
-        delete viewPort;
-    }
-
-    var viewPort = new ViewPort(document.querySelector("#view-port"),600,550);
-
-    viewPort.start = function(){
-
-        this.newPlayer({
-            color: 'red',
-            character: 1,
-            startAt: 'center',//todo
-            keyCode: '27'
-        });
-
-        this.loadLevel('main');
-    };
-
-    viewPort.runTheGame();
-
-    //todo update auto
-    document.getElementById('update-game-setting').onclick = function () {
-        var setting = {};
-        setting.v0 = parseInt(document.getElementById('v0').value || 5000);
-        setting.g = parseFloat(document.getElementById('g').value || 10);
-        setting.Distence = parseInt(document.getElementById('Distence').value || 100);
-        setting.Width = parseInt(document.getElementById('Width').value || 50);
-        setting.speed = parseFloat(document.getElementById('speed').value || 1.9);
-
-        viewPort.updateSetting(setting);
-
-    }
-}
-play();
-*/
-
 
 function main ()
 {

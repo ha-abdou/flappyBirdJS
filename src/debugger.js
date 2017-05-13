@@ -1,6 +1,6 @@
-/**
- * Created by abdou on 13/05/17.
- */
+/*global XMLNS*/
+'use strict';
+
 function Debugger ()
 {
     this.elm = document.createElementNS(XMLNS, 'g');
@@ -47,7 +47,7 @@ Debugger.prototype.createLine = function (x1, x2, y1, y2, color)
     line.setAttribute('x2', x2);
     line.setAttribute('y1', (2 + parseInt(y1)).toString());
     line.setAttribute('y2', (2 + parseInt(y2)).toString());
-    line.setAttribute('style', "stroke:" + color+ ";stroke-width:2");
+    line.setAttribute('style', "stroke:" + color + ";stroke-width:2");
     return (line);
 };
 
