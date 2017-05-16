@@ -14,10 +14,10 @@ Debugger.prototype.init = function (player, level)
     let circle;
 
     this.elm.appendChild(this.createLine(
-        player.position.x - player.property.r,
-        player.position.x + player.property.r,
-        level.elm.querySelector(".ground-elm").getAttribute('y'),
-        level.elm.querySelector(".ground-elm").getAttribute('y'),
+        -100,
+        500,
+        level.elm.querySelector("#ground-elm").getAttribute('y'),
+        level.elm.querySelector("#ground-elm").getAttribute('y'),
         'red'
     ));
 

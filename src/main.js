@@ -11,7 +11,7 @@ function main ()
     game = new Game('180', '256');
     viewPort.appendChild(game.viewPort);
     game.init();
-    game.start();
+    //game.start();
 }
 
 /*

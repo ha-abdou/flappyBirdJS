@@ -8,12 +8,13 @@ function Level (width, height)
     this.gd = {};
     this.lastUpdate = 0;
     this.speed = 10;
+    this.intervalId = 0;
 
     this.elm.setAttribute('id', 'level');
     this.elm.innerHTML = `
     <rect width="` + width + `" height="` + height + `"
         fill="url(#background-pattern)"></rect>
-    <rect class="ground-elm" x="0" y="` + (height - height / 4.5 + 10) + `"
+    <rect id="ground-elm" x="0" y="` + (height - height / 4.5 + 10) + `"
         width="` + width + `"
         height="` + (height / 4.5) + `" fill="url(#ground-pattern)"></rect>
     `;
@@ -24,7 +25,7 @@ Level.prototype.init = function ()
     this.bcgd = document.getElementById("background-pattern");
     this.gd = document.getElementById("ground-pattern");
     //todo save iId
-    setInterval(()=>{
+    this.intervalId = setInterval(()=>{
         this.bcgd.setAttribute('x',
             (parseFloat(this.bcgd.getAttribute('x')) - (this.speed / 20)).toString());
         this.gd.setAttribute('x',
@@ -37,14 +38,17 @@ Level.prototype.start = function ()
     this.lastUpdate = (new Date()).getTime();
 };
 
+Level.prototype.stop = function ()
+{
+    clearInterval(this.intervalId);
+};
+
 Level.prototype.update = function ()
 {
     //let dt;
 
     //dt = this.lastUpdate - (new Date()).getTime();
 };
-
-
 
 Level.prototype.getSprites = function ()
 {

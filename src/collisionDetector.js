@@ -1,2 +1,3 @@
 /*global */
-'use strict';
+'use strict'
+

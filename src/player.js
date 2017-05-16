@@ -5,19 +5,18 @@ function Player ()
 {
     this.position = {x: 0, y: 0};
     this.rotation = 0;
+    this.intervalId = 0;
     //todo fall at
-    this.property = {intervalId: 0, spriteId: 1, r: 8, g: 10, v0: 50, fallAt: 0, yFall: 0};
+    this.property = {spriteId: 1, r: 8, g: 10, v0: 50, fallAt: 0, yFall: 0};
     this.elm = document.createElementNS(XMLNS, 'g');
     this.elm.innerHTML = '<circle id="player" cx="0" cy="0" r="10" fill="url(#sprite-1)"/>';
     this.bird = this.elm.querySelector("#player");
+
 }
 
-Player.prototype.start = function ()
+Player.prototype.init = function ()
 {
-    this.rotation = 0;
-    this.property.fallAt = (new Date()).getTime();
-    this.property.yFall = this.position.y;
-    this.property.intervalId = setInterval(()=>{
+    this.intervalId = setInterval(()=>{
         this.property.spriteId++;
         if (this.property.spriteId === 4)
             this.property.spriteId = 1;
@@ -25,9 +24,16 @@ Player.prototype.start = function ()
     }, 80);
 };
 
-Player.prototype.reset = function ()
+Player.prototype.start = function ()
 {
-    clearInterval(this.property.intervalId);
+    this.rotation = 0;
+    this.property.fallAt = (new Date()).getTime();
+    this.property.yFall = this.position.y;
+};
+
+Player.prototype.stop = function ()
+{
+    clearInterval(this.intervalId);
 };
 
 Player.prototype.update = function ()
