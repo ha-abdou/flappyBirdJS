@@ -23,11 +23,17 @@ UI.prototype.getInnerHTML = function ()
             <rect width="92" height="26" x="0" y="0"
                   fill="url(#flappy-bird-pattern)"></rect>
         </g>
+        <g id="tap-ui" transform="translate(` + (this.wigth / 2 - 30) + `,
+            ` + (this.height / 1.5 - 42) + `)" style="display: none">
+            <rect width="60" height="55" x="0" y="0"
+                  fill="url(#tap-pattern)"></rect>
+        </g>
         <g id="play-btn" transform="translate(` + (this.wigth / 2 - 30) + `,
-            ` + (this.height / 1.5 - 30) + `)">
+            ` + (this.height / 1.5 - 30) + `)" >
             <rect width="60" height="30" x="0" y="0"
                   fill="url(#play-btn-pattern)"></rect>
         </g>
+
     `);
 };
 
@@ -48,6 +54,11 @@ UI.prototype.getSprites = function ()
         <pattern id="play-btn-pattern" x="0" y="0" patternUnits="userSpaceOnUse"
              height="256" width="128">
              <image height="512" width="512" x="-351" y="-118"
+                  xlink:href="assets/img/sprites.png"></image>
+        </pattern>
+        <pattern id="tap-pattern" x="0" y="0" patternUnits="userSpaceOnUse"
+             height="256" width="128">
+             <image height="512" width="512" x="-291" y="-86"
                   xlink:href="assets/img/sprites.png"></image>
         </pattern>
     </defs>

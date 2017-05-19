@@ -7,7 +7,7 @@ function Level (width, height)
     this.bcgd = {};
     this.gd = {};
     this.lastUpdate = 0;
-    this.speed = 10;
+    this.speed = 5;
     this.intervalId = 0;
 
     this.elm.setAttribute('id', 'level');
@@ -27,10 +27,10 @@ Level.prototype.init = function ()
     //todo save iId
     this.intervalId = setInterval(()=>{
         this.bcgd.setAttribute('x',
-            (parseFloat(this.bcgd.getAttribute('x')) - (this.speed / 20)).toString());
+            (parseFloat(this.bcgd.getAttribute('x')) - (this.speed / 30)).toString());
         this.gd.setAttribute('x',
-            (parseFloat(this.gd.getAttribute('x')) - (this.speed / 10)).toString());
-    }, 50);
+            (parseFloat(this.gd.getAttribute('x')) - (this.speed / 5)).toString());
+    }, 20);
 };
 
 Level.prototype.start = function ()

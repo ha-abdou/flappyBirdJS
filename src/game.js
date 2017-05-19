@@ -20,13 +20,6 @@ function Game (width, height)
     this.viewPort.setAttribute('xmlns:xlink', XLINK);
     this.viewPort.setAttribute('width', width);
     this.viewPort.setAttribute('height', height);
-    //for dev
-    window.ddd = new Debugger();
-    this.viewPort.setAttribute('style', "zoom:2.5;");
-    if (DEBUG)
-        this.viewPort.appendChild(ddd.elm);
-    window.ddd.init(this.player, this.level);
-    //end
 }
 
 Game.prototype.init = function ()
@@ -40,8 +33,16 @@ Game.prototype.init = function ()
         setTimeout(()=>{this.start();}, 0);
         this.playBTN.style.display = "none";
         (this.viewPort.getElementById("flappy-bird-text")).style.display = "none";
+        (this.viewPort.getElementById("tap-ui")).style.display = "block";
         this.viewPort.appendChild(this.player.elm);
     };
+    //for dev
+    window.ddd = new Debugger();
+    this.viewPort.setAttribute('style', "zoom:2.5;");
+    if (DEBUG)
+        this.viewPort.appendChild(ddd.elm);
+    window.ddd.init(this.player, this.level);
+    //end
 
 };
 
@@ -53,18 +54,14 @@ Game.prototype.start = function ()
     //todo touch
     this.player.init();
     this.viewPort.onmousedown = ()=>{
-        let jumpSound;
-
-        jumpSound = new Audio('assets/sound/fly.mp3');
+        (new Audio('assets/sound/fly.mp3')).play();
+        (this.viewPort.getElementById("tap-ui")).style.display = "none";
         this.player.start();
         this.level.start();
-        jumpSound.play();
         this.intervalId = setInterval(this.update.bind(this), this.t);
         this.viewPort.onmousedown = ()=>{
-            jumpSound = new Audio('assets/sound/fly.mp3');
-
+            (new Audio('assets/sound/fly.mp3')).play();
             this.player.jump();
-            jumpSound.play();
         };
     };
 };
@@ -74,7 +71,11 @@ Game.prototype.update = function ()
     this.player.update();
     this.level.update();
     if (this.player.position.y > 202)
+    {
+        (new Audio('assets/sound/death.mp3')).play();
         this.gameOver();
+        //todo sound
+    }
     /*
     if (this.collisionDetector.check(this.player, this.level.obstacles))
         //hit
@@ -96,6 +97,7 @@ Game.prototype.gameOver = function ()
     this.playBTN.onmousedown = () =>{
         setTimeout(()=>{this.start();}, 0);
         this.playBTN.style.display = "none";
+        (this.viewPort.getElementById("tap-ui")).style.display = "block";
         this.level.init();
         //hide show playBTN score bestScore medal
     };
