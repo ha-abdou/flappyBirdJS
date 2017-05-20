@@ -12,6 +12,8 @@ function Game (width, height)
     this.level = new Level(width, height);
     this.UI = new UI(width, height);
     this.playBTN = {};
+    this.score = 0;
+    this.bestScore = 0;
     //this.collisionDetector = new CollisionDetector();
 
     this.viewPort.innerHTML = this.loadSprites();
@@ -93,10 +95,22 @@ Game.prototype.gameOver = function ()
     this.player.stop();
     this.viewPort.onmousedown = null;
     //todo show playBTN score bestScore medal
-    this.playBTN.style.display = "block";
+    (this.viewPort.getElementById("score-ui")).innerHTML = this.score.toString();
+    (this.viewPort.getElementById("best-score-ui")).innerHTML = this.bestScore.toString();
+    (this.viewPort.getElementById("game-over-ui")).style.display = "block";
+    (this.viewPort.getElementById("score-panel-ui")).style.display = "block";
+    (this.viewPort.getElementById("score-ui")).style.display = "block";
+    (this.viewPort.getElementById("best-score-ui")).style.display = "block";
+    setTimeout(()=>{
+        this.playBTN.style.display = "block";
+    }, 500);
     this.playBTN.onmousedown = () =>{
         setTimeout(()=>{this.start();}, 0);
         this.playBTN.style.display = "none";
+        (this.viewPort.getElementById("game-over-ui")).style.display = "none";
+        (this.viewPort.getElementById("score-panel-ui")).style.display = "none";
+        (this.viewPort.getElementById("score-ui")).style.display = "none";
+        (this.viewPort.getElementById("best-score-ui")).style.display = "none";
         (this.viewPort.getElementById("tap-ui")).style.display = "block";
         this.level.init();
         //hide show playBTN score bestScore medal

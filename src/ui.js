@@ -10,11 +10,6 @@ function UI (width, height)
     this.elm.innerHTML = this.getInnerHTML();
 }
 
-UI.prototype.loadFirstScreen = function ()
-{
-
-};
-
 UI.prototype.getInnerHTML = function ()
 {
     return (`
@@ -33,7 +28,20 @@ UI.prototype.getInnerHTML = function ()
             <rect width="60" height="30" x="0" y="0"
                   fill="url(#play-btn-pattern)"></rect>
         </g>
-
+        <g id="game-over-ui" transform="translate(` + (this.wigth / 2 - 50) + `,
+            ` + 20 + `)" style="display: none">
+            <rect width="100" height="23" x="0" y="0"
+                  fill="url(#game-over-pattern)"></rect>
+        </g>
+        <g id="score-panel-ui" transform="translate(` + (this.wigth / 2 - 60) + `,
+            ` + 70 + `)" style="display: none">
+            <rect width="118" height="60" x="0" y="0"
+                  fill="url(#score-panel-pattern)"></rect>
+        </g>
+        <text id="score-ui" x="` + (this.wigth / 2 + 44) + `"  y="98" font-size="14px"
+              font-family="f" text-anchor="end" style="display: none">0</text>
+        <text id="best-score-ui" x="` + (this.wigth / 2 + 44) + `"  y="120"
+              font-size="14px" font-family="f" text-anchor="end" style="display: none">0</text>
     `);
 };
 
@@ -59,6 +67,16 @@ UI.prototype.getSprites = function ()
         <pattern id="tap-pattern" x="0" y="0" patternUnits="userSpaceOnUse"
              height="256" width="128">
              <image height="512" width="512" x="-291" y="-86"
+                  xlink:href="assets/img/sprites.png"></image>
+        </pattern>
+        <pattern id="game-over-pattern" x="0" y="0" patternUnits="userSpaceOnUse"
+             height="256" width="128">
+             <image height="512" width="512" x="-394" y="-59"
+                  xlink:href="assets/img/sprites.png"></image>
+        </pattern>
+        <pattern id="score-panel-pattern" x="0" y="0" patternUnits="userSpaceOnUse"
+             height="256" width="128">
+             <image height="512" width="512" x="-1" y="-258"
                   xlink:href="assets/img/sprites.png"></image>
         </pattern>
     </defs>
