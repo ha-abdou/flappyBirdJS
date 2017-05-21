@@ -13,6 +13,8 @@ function UI (width, height)
 UI.prototype.getInnerHTML = function ()
 {
     return (`
+        <text class="noselect" style="display: none" id="live-score-ui" y="42" x="` + (this.wigth / 2) + `"
+            font-size="14px" font-family="f" text-anchor="middle">0</text>
         <g id="flappy-bird-text" transform="translate(` + (this.wigth / 2 - 45) + `,
             ` + (this.height / 2 - 80) + `)">
             <rect width="92" height="26" x="0" y="0"
@@ -28,20 +30,24 @@ UI.prototype.getInnerHTML = function ()
             <rect width="60" height="30" x="0" y="0"
                   fill="url(#play-btn-pattern)"></rect>
         </g>
-        <g id="game-over-ui" transform="translate(` + (this.wigth / 2 - 50) + `,
-            ` + 20 + `)" style="display: none">
-            <rect width="100" height="23" x="0" y="0"
-                  fill="url(#game-over-pattern)"></rect>
+        <g class="noselect" id="game-over-panel" style="display: none">
+            <g id="game-over-ui" transform="translate(` + (this.wigth / 2 - 50) + `,
+                ` + 20 + `)">
+                <rect width="100" height="23" x="0" y="0"
+                      fill="url(#game-over-pattern)"></rect>
+            </g>
+            <g id="score-panel-ui" transform="translate(` + (this.wigth / 2 - 60) + `,
+                ` + 70 + `)">
+                <rect width="118" height="60" x="0" y="0"
+                      fill="url(#score-panel-pattern)"></rect>
+            </g>
+            <text id="score-ui" x="` + (this.wigth / 2 + 44) + `"  y="98" font-size="14px"
+                  font-family="f" text-anchor="end">0</text>
+            <text id="best-score-ui" x="` + (this.wigth / 2 + 44) + `"  y="120"
+                  font-size="14px" font-family="f" text-anchor="end">0</text>
+            <circle id="medal-ui" cy="104" cx="` + (this.wigth / 2 - 33) + `"                         r="12"
+                    fill="rgba(0,0,0,0)" ></circle>
         </g>
-        <g id="score-panel-ui" transform="translate(` + (this.wigth / 2 - 60) + `,
-            ` + 70 + `)" style="display: none">
-            <rect width="118" height="60" x="0" y="0"
-                  fill="url(#score-panel-pattern)"></rect>
-        </g>
-        <text id="score-ui" x="` + (this.wigth / 2 + 44) + `"  y="98" font-size="14px"
-              font-family="f" text-anchor="end" style="display: none">0</text>
-        <text id="best-score-ui" x="` + (this.wigth / 2 + 44) + `"  y="120"
-              font-size="14px" font-family="f" text-anchor="end" style="display: none">0</text>
     `);
 };
 
@@ -77,6 +83,26 @@ UI.prototype.getSprites = function ()
         <pattern id="score-panel-pattern" x="0" y="0" patternUnits="userSpaceOnUse"
              height="256" width="128">
              <image height="512" width="512" x="-1" y="-258"
+                  xlink:href="assets/img/sprites.png"></image>
+        </pattern>
+        <pattern id="medal-1-pattern" x="0" y="0" patternUnits="userSpaceOnUse"
+             height="256" width="128">
+             <image height="512" width="512" x="-75" y="-166"
+                  xlink:href="assets/img/sprites.png"></image>
+        </pattern>
+        <pattern id="medal-3-pattern" x="0" y="0" patternUnits="userSpaceOnUse"
+             height="256" width="128">
+             <image height="512" width="512" x="-75" y="-190"
+                  xlink:href="assets/img/sprites.png"></image>
+        </pattern>
+        <pattern id="medal-2-pattern" x="0" y="0" patternUnits="userSpaceOnUse"
+             height="256" width="128">
+             <image height="512" width="512" x="-67" y="-360"
+                  xlink:href="assets/img/sprites.png"></image>
+        </pattern>
+        <pattern id="medal-4-pattern" x="0" y="0" patternUnits="userSpaceOnUse"
+             height="256" width="128">
+             <image height="512" width="512" x="-67" y="-384"
                   xlink:href="assets/img/sprites.png"></image>
         </pattern>
     </defs>

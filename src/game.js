@@ -48,12 +48,21 @@ Game.prototype.init = function ()
 
 };
 
+Game.prototype.setScore = function (score)
+{
+    (new Audio('assets/sound/scored.mp3')).play();
+    this.score = score;
+    (this.viewPort.getElementById("live-score-ui")).innerHTML = this.score.toString();
+
+};
+
 Game.prototype.start = function ()
 {
     this.player.rotation = 0;
     this.player.move(this.width / 3, this.height / 2.5);
 
     //todo touch
+    (this.viewPort.getElementById("live-score-ui")).style.display = "block";
     this.player.init();
     this.viewPort.onmousedown = ()=>{
         (new Audio('assets/sound/fly.mp3')).play();
@@ -61,6 +70,9 @@ Game.prototype.start = function ()
         this.player.start();
         this.level.start();
         this.intervalId = setInterval(this.update.bind(this), this.t);
+        //todo remove; for preview the medal
+        setInterval(()=>{this.setScore(this.score + 1)}, 1000);
+        //
         this.viewPort.onmousedown = ()=>{
             (new Audio('assets/sound/fly.mp3')).play();
             this.player.jump();
@@ -80,7 +92,9 @@ Game.prototype.update = function ()
     }
     /*
     if (this.collisionDetector.check(this.player, this.level.obstacles))
-        //hit
+    0 for ok
+    1 for score up
+   -1 for hit
     */
 
     //for dev
@@ -94,24 +108,32 @@ Game.prototype.gameOver = function ()
     this.level.stop();
     this.player.stop();
     this.viewPort.onmousedown = null;
-    //todo show playBTN score bestScore medal
+    if (this.score > this.bestScore)
+        this.bestScore = this.score;
     (this.viewPort.getElementById("score-ui")).innerHTML = this.score.toString();
     (this.viewPort.getElementById("best-score-ui")).innerHTML = this.bestScore.toString();
-    (this.viewPort.getElementById("game-over-ui")).style.display = "block";
-    (this.viewPort.getElementById("score-panel-ui")).style.display = "block";
-    (this.viewPort.getElementById("score-ui")).style.display = "block";
-    (this.viewPort.getElementById("best-score-ui")).style.display = "block";
+    if (this.score < 5)
+        (this.viewPort.getElementById("medal-ui")).setAttribute("fill", "rgba(0,0,0,0)");
+    else if (this.score < 10)
+        (this.viewPort.getElementById("medal-ui")).setAttribute("fill", "url(#medal-1-pattern)");
+    else if (this.score < 20)
+        (this.viewPort.getElementById("medal-ui")).setAttribute("fill", "url(#medal-2-pattern)");
+    else if (this.score < 40)
+        (this.viewPort.getElementById("medal-ui")).setAttribute("fill", "url(#medal-3-pattern)");
+    else
+        (this.viewPort.getElementById("medal-ui")).setAttribute("fill", "url(#medal-4-pattern)");
+    (this.viewPort.getElementById("game-over-panel")).style.display = "block";
+    (this.viewPort.getElementById("live-score-ui")).style.display = "none";
     setTimeout(()=>{
         this.playBTN.style.display = "block";
     }, 500);
     this.playBTN.onmousedown = () =>{
+        this.score = 0;
         setTimeout(()=>{this.start();}, 0);
         this.playBTN.style.display = "none";
-        (this.viewPort.getElementById("game-over-ui")).style.display = "none";
-        (this.viewPort.getElementById("score-panel-ui")).style.display = "none";
-        (this.viewPort.getElementById("score-ui")).style.display = "none";
-        (this.viewPort.getElementById("best-score-ui")).style.display = "none";
+        (this.viewPort.getElementById("game-over-panel")).style.display = "none";
         (this.viewPort.getElementById("tap-ui")).style.display = "block";
+        (this.viewPort.getElementById("live-score-ui")).style.display = "block";
         this.level.init();
         //hide show playBTN score bestScore medal
     };

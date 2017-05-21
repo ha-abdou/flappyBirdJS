@@ -8,7 +8,7 @@ function main ()
     let viewPort;
 
     viewPort = document.querySelector("#view-port");
-    game = new Game('300', '256');
+    game = new Game('180', '256');
     viewPort.appendChild(game.viewPort);
     game.init();
     //game.start();
