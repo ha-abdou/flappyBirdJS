@@ -11,6 +11,9 @@ function Tube()
     this.height = 161;
     this.xGape = 80;
     this.y = 30;
+    this.gape = 40;
+    this.top = this.xGape + this.y - this.gape;
+    this.bottom = this.xGape + this.y + this.gape;
 
     this.elm = document.createElementNS(XMLNS, 'g');
     this.elm.innerHTML = `
@@ -18,7 +21,7 @@ function Tube()
     <g  class="down"><rect width="26" height="161" fill="url(#tube-down-pattern)"></rect></g>`;
     this.tubeUp = this.elm.querySelector(".up");
     this.tubeDown = this.elm.querySelector(".down");
-    this.setGape(40);
+    this.setGape(this.gape);
     this.move(0, 0);
 }
 
@@ -30,6 +33,7 @@ Tube.prototype.move = function (x, y)
 
 Tube.prototype.setGape = function (gape)
 {
+    this.gape = gape;
     this.tubeDown.setAttribute("transform", 'translate(0,' + (this.xGape + gape) + ')');
     this.tubeUp.setAttribute("transform", 'translate(0,' + (-this.xGape - gape) + ')');
 };
