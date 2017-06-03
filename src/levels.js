@@ -14,7 +14,7 @@ function Level (width, height)
     this.tubes = [];
     this.lastTubeId = 0;
     this.headTubeId = 0;
-    this.dTubes = 80;
+    this.dTubes = 85;
     this.tubesHolder = {};
     this.xTubes = 0;
     this.startPoint = this.width + 50;
@@ -87,7 +87,8 @@ Level.prototype.pushLast = function ()
 
     this.tubes[this.headTubeId].move(
         this.tubes[this.lastTubeId].position.x + 26 + this.dTubes ,
-        this.tubes[this.headTubeId].position.y);
+            getRandomArbitary(-25, 40)
+        );
     tmp = this.headTubeId;
     this.headTubeId++;
     if (this.headTubeId === this.tubes.length)
@@ -104,7 +105,7 @@ Level.prototype.createTubes = function ()
     this.tubesHolder.setAttribute('id', 'tubes-holder');
     tubesLength = this.width / this.dTubes;
     this.tubes.push(new Tube());
-    this.tubes[0].move(this.width , 20);//todo random y
+    this.tubes[0].move(this.width , getRandomArbitary(-20, 30));
     this.tubesHolder.appendChild(this.tubes[0].elm);
     for (let i = 1; i < tubesLength; i++)
     {
@@ -113,7 +114,8 @@ Level.prototype.createTubes = function ()
         tube = new Tube();
         this.tubesHolder.appendChild(tube.elm);
         this.tubes.push(tube);
-        tube.move(this.tubes[this.lastTubeId].position.x + 26 + this.dTubes , 20);
+        tube.move(this.tubes[this.lastTubeId].position.x + 26 + this.dTubes ,
+                getRandomArbitary(-20, 30));
         this.lastTubeId = i;
     }
     tmp = this.elm.querySelector("#ground-elm");
@@ -157,3 +159,8 @@ Level.prototype.getSprites = function ()
     </defs>
     `);
 };
+
+function getRandomArbitary (min, max)
+{
+    return (Math.random() * (max - min));
+}

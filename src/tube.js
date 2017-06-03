@@ -10,7 +10,7 @@ function Tube()
     this.width = 26;
     this.height = 161;
     this.xGape = 80;
-    this.y = 30;
+    this.y = 0;
     this.gape = 40;
     this.top = this.xGape + this.y - this.gape;
     this.bottom = this.xGape + this.y + this.gape;
@@ -36,9 +36,4 @@ Tube.prototype.setGape = function (gape)
     this.gape = gape;
     this.tubeDown.setAttribute("transform", 'translate(0,' + (this.xGape + gape) + ')');
     this.tubeUp.setAttribute("transform", 'translate(0,' + (-this.xGape - gape) + ')');
-};
-
-Tube.prototype.center = function ()
-{
-
 };

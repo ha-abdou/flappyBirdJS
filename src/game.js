@@ -17,10 +17,10 @@ function Game (width, height)
     this.collisionDetector = new CollisionDetector(this.player, this.level.tubes);
 
     this.viewPort.innerHTML = this.loadSprites();
-    this.viewPort.setAttribute('viewBox', "0 0 " + (width * 3) + " " + (height));
+    this.viewPort.setAttribute('viewBox', "0 0 " + (width) + " " + (height));
     this.viewPort.setAttribute('xmlns', XMLNS);
     this.viewPort.setAttribute('xmlns:xlink', XLINK);
-    this.viewPort.setAttribute('width', width * 3);
+    this.viewPort.setAttribute('width', width);
     this.viewPort.setAttribute('height', height);
 }
 
@@ -40,13 +40,13 @@ Game.prototype.init = function ()
         (this.viewPort.getElementById("flappy-bird-text")).style.display = "none";
         (this.viewPort.getElementById("tap-ui")).style.display = "block";
     };
-    //for dev
+    /* /for dev
     window.ddd = new Debugger();
     //this.viewPort.setAttribute('style', "zoom:2;");
     if (DEBUG)
         this.viewPort.appendChild(ddd.elm);
     window.ddd.init(this.player, this.level);
-    //end
+    //end */
 
 };
 
@@ -94,16 +94,11 @@ Game.prototype.update = function ()
     }
     else if (r === 1)
         this.setScore(this.score + 1);
-    /*
-    if (this.collisionDetector.check(this.player, this.level.obstacles))
-    0 for ok
-    1 for score up
-   -1 for hit
-    */
-
+/*
     //for dev
     window.ddd.upDate(this.player, this.level);
     //end
+    */
 };
 
 Game.prototype.gameOver = function ()
@@ -142,18 +137,7 @@ Game.prototype.gameOver = function ()
     };
 };
 
-Game.prototype.restart = function ()
-{
-
-};
-
 Game.prototype.loadSprites = function ()
 {
     return (this.player.getSprites() + this.level.getSprites() + this.UI.getSprites());
-};
-
-
-Game.prototype.loadFirstScreen = function ()
-{
-
 };
