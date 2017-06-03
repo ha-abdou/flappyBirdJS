@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script>
+        if (location.protocol !== 'file:' && location.protocol === 'http:') {
+            location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+        }
+    </script>
     <meta charset="UTF-8">
-    <title>test</title>
+    <title>flappybird | maghreb.in</title>
     <style>
         @font-face {
             font-family: 'f';
@@ -10,11 +15,15 @@
             font-weight: normal;
             font-style: normal;
         }
-        #view-port, #img img, svg{
+        svg{
             border: 1px solid #000000;
         }
-        div#main{
+        #view-port{
             text-align: center;
+
+        }
+        body{
+            background-color: #38304f;
         }
         div#sub-main p{
             display: inline;
@@ -43,8 +52,15 @@
 </head>
 <body>
 <div id="view-port"></div>
-
-
+<audio >
+    <source src="assets/sound/death.mp3" type='audio/mp4'>
+</audio>
+<audio >
+    <source src="assets/sound/fly.mp3" type='audio/mp4'>
+</audio>
+<audio >
+    <source src="assets/sound/scored.mp3" type='audio/mp4'>
+</audio>
 
 <!--
 <script src="src/collisionDetector.js"></script>

@@ -22,6 +22,9 @@ function Game (width, height)
     this.viewPort.setAttribute('xmlns:xlink', XLINK);
     this.viewPort.setAttribute('width', width);
     this.viewPort.setAttribute('height', height);
+    this.viewPort.setAttribute('style', "transform:" +
+        " scale(2);transform-origin: center top;");
+
 }
 
 Game.prototype.init = function ()
@@ -41,8 +44,7 @@ Game.prototype.init = function ()
         (this.viewPort.getElementById("tap-ui")).style.display = "block";
     };
     /* /for dev
-    window.ddd = new Debugger();
-    //this.viewPort.setAttribute('style', "zoom:2;");
+     window.ddd = new Debugger();
     if (DEBUG)
         this.viewPort.appendChild(ddd.elm);
     window.ddd.init(this.player, this.level);
@@ -111,13 +113,13 @@ Game.prototype.gameOver = function ()
         this.bestScore = this.score;
     (this.viewPort.getElementById("score-ui")).innerHTML = this.score.toString();
     (this.viewPort.getElementById("best-score-ui")).innerHTML = this.bestScore.toString();
-    if (this.score < 5)
+    if (this.score < 3)
         (this.viewPort.getElementById("medal-ui")).setAttribute("fill", "rgba(0,0,0,0)");
-    else if (this.score < 10)
+    else if (this.score < 8)
         (this.viewPort.getElementById("medal-ui")).setAttribute("fill", "url(#medal-1-pattern)");
-    else if (this.score < 20)
+    else if (this.score < 15)
         (this.viewPort.getElementById("medal-ui")).setAttribute("fill", "url(#medal-2-pattern)");
-    else if (this.score < 40)
+    else if (this.score < 30)
         (this.viewPort.getElementById("medal-ui")).setAttribute("fill", "url(#medal-3-pattern)");
     else
         (this.viewPort.getElementById("medal-ui")).setAttribute("fill", "url(#medal-4-pattern)");
