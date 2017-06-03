@@ -14,10 +14,10 @@ function Level (width, height)
     this.tubes = [];
     this.lastTubeId = 0;
     this.headTubeId = 0;
-    this.dTubes = 70;
+    this.dTubes = 80;
     this.tubesHolder = {};
     this.xTubes = 0;
-    this.startPoint = 180;
+    this.startPoint = this.width + 50;
 
     this.elm.setAttribute('id', 'level');
     this.elm.innerHTML = `
@@ -28,7 +28,6 @@ function Level (width, height)
         width="` + width + `"
         height="` + (height / 4.5) + `" fill="url(#ground-pattern)"></rect>
     </g>
-
     `;
     this.createTubes();
 }
@@ -41,6 +40,7 @@ Level.prototype.init = function ()
     lastUpdate = (new Date()).getTime();
     this.bcgd = document.getElementById("background-pattern");
     this.gd = document.getElementById("ground-pattern");
+    this.resetTubes();
     this.intervalId = setInterval(()=>{
         dt = lastUpdate - (new Date()).getTime();
         this.bcgd.setAttribute('x',
@@ -67,7 +67,7 @@ Level.prototype.update = function ()
     let dx;
 
     dt = (new Date()).getTime() - this.lastUpdate;
-    if (dt === 0)
+    if (dt <= 1)
         return;
     dx = (dt / this.speed);
     for (let i = this.tubes.length - 1; i >= 0; i--)
@@ -104,7 +104,7 @@ Level.prototype.createTubes = function ()
     this.tubesHolder.setAttribute('id', 'tubes-holder');
     tubesLength = this.width / this.dTubes;
     this.tubes.push(new Tube());
-    this.tubes[0].move(this.width , 0);//todo random y
+    this.tubes[0].move(this.width , 20);//todo random y
     this.tubesHolder.appendChild(this.tubes[0].elm);
     for (let i = 1; i < tubesLength; i++)
     {
@@ -113,7 +113,7 @@ Level.prototype.createTubes = function ()
         tube = new Tube();
         this.tubesHolder.appendChild(tube.elm);
         this.tubes.push(tube);
-        tube.move(this.tubes[this.lastTubeId].position.x + 26 + this.dTubes , 0);
+        tube.move(this.tubes[this.lastTubeId].position.x + 26 + this.dTubes , 20);
         this.lastTubeId = i;
     }
     tmp = this.elm.querySelector("#ground-elm");
@@ -124,7 +124,10 @@ Level.prototype.createTubes = function ()
 
 Level.prototype.resetTubes = function ()
 {
-
+    while (this.tubes[this.headTubeId].position.x < this.startPoint)
+    {
+        this.pushLast();
+    }
 };
 
 Level.prototype.getSprites = function ()

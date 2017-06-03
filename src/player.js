@@ -11,7 +11,7 @@ function Player ()
     this.elm = document.createElementNS(XMLNS, 'g');
     this.elm.innerHTML = '<circle id="player" cx="0" cy="0" r="10" fill="url(#sprite-1)"/>';
     this.bird = this.elm.querySelector("#player");
-
+    this.move(-20, -20);
 }
 
 Player.prototype.init = function ()

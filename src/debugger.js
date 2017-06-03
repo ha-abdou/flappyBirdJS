@@ -16,8 +16,7 @@ Debugger.prototype.init = function (player, level)
     this.elm.appendChild(this.createLine(
         -100,
         500,
-        level.elm.querySelector("#ground-elm").getAttribute('y'),
-        level.elm.querySelector("#ground-elm").getAttribute('y'),
+        219, 219,
         'red'
     ));
 
