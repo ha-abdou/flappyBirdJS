@@ -1,4 +1,4 @@
-/*global XMLNS, XLINK, DEBUG, Player, Level, Debugger, ddd*/
+/*global XMLNS, XLINK, DEBUG, Player, Level, Debugger, ddd, UI*/
 'use strict';
 
 function Game (width, height)
@@ -17,10 +17,10 @@ function Game (width, height)
     //this.collisionDetector = new CollisionDetector();
 
     this.viewPort.innerHTML = this.loadSprites();
-    this.viewPort.setAttribute('viewBox', "0 0 " + width + " " + height);
+    this.viewPort.setAttribute('viewBox', "0 0 " + (width * 3) + " " + (height));
     this.viewPort.setAttribute('xmlns', XMLNS);
     this.viewPort.setAttribute('xmlns:xlink', XLINK);
-    this.viewPort.setAttribute('width', width);
+    this.viewPort.setAttribute('width', width * 3);
     this.viewPort.setAttribute('height', height);
 }
 
@@ -40,7 +40,7 @@ Game.prototype.init = function ()
     };
     //for dev
     window.ddd = new Debugger();
-    this.viewPort.setAttribute('style', "zoom:2.5;");
+    //this.viewPort.setAttribute('style', "zoom:2.5;");
     if (DEBUG)
         this.viewPort.appendChild(ddd.elm);
     window.ddd.init(this.player, this.level);
@@ -71,7 +71,7 @@ Game.prototype.start = function ()
         this.level.start();
         this.intervalId = setInterval(this.update.bind(this), this.t);
         //todo remove; for preview the medal
-        setInterval(()=>{this.setScore(this.score + 1)}, 1000);
+        setInterval(()=>{this.setScore(this.score + 1);}, 1000);
         //
         this.viewPort.onmousedown = ()=>{
             (new Audio('assets/sound/fly.mp3')).play();
@@ -86,8 +86,8 @@ Game.prototype.update = function ()
     this.level.update();
     if (this.player.position.y > 202)
     {
-        (new Audio('assets/sound/death.mp3')).play();
-        this.gameOver();
+        //(new Audio('assets/sound/death.mp3')).play();
+        //this.gameOver();
         //todo sound
     }
     /*
