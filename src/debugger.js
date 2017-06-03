@@ -32,13 +32,13 @@ Debugger.prototype.init = function (player, level)
     this.elm.appendChild(circle);
 };
 
-Debugger.prototype.upDate = function (player, level)
+Debugger.prototype.upDate = function (player)//level
 {
     this.playerHitBox.setAttribute('cx', player.position.x.toString());
     this.playerHitBox.setAttribute('cy', player.position.y.toString());
 };
 
-Debugger.prototype.createLine = function (x1, x2, y1, y2, color)
+Debugger.prototype.createLine = function (x1, x2, y1, y2, color)//color
 {
     let line;
 
@@ -50,7 +50,7 @@ Debugger.prototype.createLine = function (x1, x2, y1, y2, color)
     line.setAttribute('style', "stroke:" + color + ";stroke-width:2");
     return (line);
 };
-
+/*
 Debugger.prototype.createCircle = function (r, cx, cy, color)
 {
 
@@ -60,3 +60,4 @@ Debugger.prototype.update = function ()
 {
 
 };
+*/
