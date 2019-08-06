@@ -4,12 +4,7 @@
   "description": "clone of flappy bird in js ",
   "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "builb": "echo \"Error: no builb specified\" && exit 1",
-    "build:browser": "echo \"Error: no builb specified\" && exit 1",
-    "build:android": "echo \"Error: no builb specified\" && exit 1",
-    "serve": "lite-server -c=bs-config.json",
-    "start": "npm run serve",
+    "start": "lite-server -c=bs-config.json",
     "lint": "eslint src/*.js"
   },
   "devDependencies": {
@@ -17,6 +12,6 @@
     "eslint": "^3.19.0",
     "lite-server": "^2.2.2"
   },
-  "author": "abdou",
+  "author": "habdel-i",
   "license": "MIT"
 }
